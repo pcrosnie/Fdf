@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:50:19 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/01/20 11:21:33 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/01/20 16:56:38 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,39 @@
 
 #include "libft.h"
 #include "get_next_line.h"
+#include "mlx.h"
 
-typedef struct	s_get_tab
+typedef struct	s_data
 {
 	int index;
 	int **entry;
-}				t_get_tab;
+}				t_data;
 
-t_get_tab *ft_read(char *entry);
+typedef struct
+{
+	void *mlx_ptr;
+	void *mlx_win;
+}				MLXCore;
+
+typedef struct
+{
+	int         win_width;
+	int         win_height;
+	void		*win_texts;
+	void		*win_next;
+}				MLXWindow;
+
+typedef struct
+{
+	int                im_width;
+	int                im_height;
+	unsigned int       im_bpp;
+	unsigned int       im_bpl;
+	unsigned char      *im_buffer;
+	void				*im_ximg;
+}				MLXImage;
+
+void	ft_open_window(int width, int height);
+t_data	*ft_read(char *entry);
 
 #endif

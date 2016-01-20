@@ -6,22 +6,22 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:52:38 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/01/20 11:25:12 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/01/20 16:46:39 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_get_tab	*ft_read(char *entry)
+t_data	*ft_read(char *entry)
 {
 	int i;
 	char **tmp;
-	static t_get_tab *ptr;
+	static t_data *ptr;
 
 	i = 0;
 	if (!ptr)
 	{
-		ptr = (t_get_tab *)malloc(sizeof(t_get_tab));
+		ptr = (t_data *)malloc(sizeof(t_data));
 		ptr->entry = (int **)malloc(sizeof(int *) * 100000);
 	}
 	if (!(ptr->entry[ptr->index]))
