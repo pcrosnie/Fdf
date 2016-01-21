@@ -6,13 +6,13 @@
 #    By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/20 12:13:09 by pcrosnie          #+#    #+#              #
-#    Updated: 2016/01/20 14:57:05 by pcrosnie         ###   ########.fr        #
+#    Updated: 2016/01/21 13:07:33 by pcrosnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-FLAGS = -L /usr/X11/lib -lmlx -framework OpenGl -framework AppKit
+FLAGS = -L /usr/lib -lmlx -framework OpenGl -framework AppKit
 
 SRC = get_next_line.c libft.a ft_read.c main.c ft_display.c
 

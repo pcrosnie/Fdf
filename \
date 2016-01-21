@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:50:19 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/01/21 17:45:48 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/01/21 14:51:45 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ typedef struct	s_data
 
 typedef struct	s_link
 {
-	float Xa;
-	float Ya;
-	float Xb;
-	float Yb;
+	int	Xa;
+	int Ya;
+	int Xb;
+	int Yb;
 	float coeff_dir;
 }				t_link;
 
