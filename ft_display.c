@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 14:48:25 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/01/21 17:45:52 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/01/22 14:50:41 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,17 +119,38 @@ void	ft_connect_points(MLXCore *ptr)
 	float x;
 	float y;
 	t_link *adr;
+	int i;
 
+	i = 0;
 	adr = (t_link *)malloc(sizeof(t_link));
-	adr->Xa = 853;
-	adr->Ya = 17;
-	adr->Xb = 120;
-	adr->Yb = 670;
+	adr->Xa = 732;
+	adr->Ya = 893;
+	adr->Xb = 24;
+	adr->Yb = 623;
 	x = (adr->Xb) - (adr->Xa);
 	y = (adr->Yb) - (adr->Ya);
-	adr->coeff_dir = x / y;
+	if (y != 0)
+		adr->coeff_dir = x / y;
 	printf("%f\n", adr->coeff_dir);
-	if (adr->coeff_dir < 0)
+	if (adr->Xb == adr->Xa)
+	{
+		if (adr->Yb - adr->Ya < 0)
+			while (i < adr->Ya - adr->Yb)
+				mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, adr->Xa, adr->Ya - i++, 0xFF00FF);
+		else
+			while (i < adr->Yb - adr->Ya)
+				mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, adr->Xa, adr->Ya + i++, 0xFF00FF);
+	}
+	else if (adr->Ya == adr->Yb)
+	{
+		if (adr->Xb - adr->Xa < 0)
+			while (i < adr->Xa - adr->Xb)
+				mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, adr->Xa - i++, adr->Ya, 0xFF00FF);
+		else
+			while (i < adr->Xb - adr->Xa)
+				mlx_pixel_put(ptr->mlx_ptr, ptr->mlx_win, adr->Xa + i++, adr->Ya, 0xFF00FF);
+	}
+	else if (adr->coeff_dir < 0)
 	{
 		if (x < 0)
 			ft_draw_line3(adr, ptr);
