@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:50:19 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/01/25 14:43:27 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/01/27 13:03:27 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct
 }				MLXImage;
 
 void	ft_connect_points(MLXCore *ptr, t_link *adr);
-void	ft_open_window(int width, int height);
+void	ft_open_window(int width, int height, t_data *ptr);
 t_data	*ft_read(char *entry);
 
 #endif

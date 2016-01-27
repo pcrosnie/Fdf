@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:47:42 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/01/25 14:50:36 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/01/25 14:51:34 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void    ft_connect_points(MLXCore *ptr, t_link *adr)
 	y = (adr->Yb) - (adr->Ya);
 	if (y != 0)
 		adr->coeff_dir = x / y;
-	printf("%f\n", adr->coeff_dir);
 	if (adr->Xb == adr->Xa)
 	{
 		if (adr->Yb - adr->Ya < 0)
