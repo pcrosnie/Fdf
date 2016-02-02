@@ -1,47 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_loop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/01 13:20:13 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/02 13:51:42 by pcrosnie         ###   ########.fr       */
+/*   Created: 2016/02/01 13:38:11 by pcrosnie          #+#    #+#             */
+/*   Updated: 2016/02/02 14:09:11 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    ft_print_tab(int **tab)
+int     ft_key_esc(int keycode, void *param)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (i < 11)
-	{
-		j = 0;
-		while (j < 19)
-		{
-			ft_putnbr(tab[i][j++]);
-			ft_putchar(' ');
-		}
-		i++;
-		ft_putchar('\n');
-	}
+	if (keycode == 53)
+		exit(0);
+	return (0);
 }
 
-int		main(int argc, char **argv)
+void	ft_loop(void)
 {
-	char	*str;
-	t_data	*ptr;
-	int		fd;
+	void	*mlx;
+	void	*win;
+	float *x;
+	float *y;
 
-	fd = open(argv[1], O_RDONLY);
-	while (get_next_line(fd, &str))
-		ptr = ft_read(str);
-	ft_print_tab(ptr->entry);
-	ft_loop();
-	return (0);
+	x = (float *)malloc(sizeof(float) * 2);
+	y = (float *)malloc(sizeof(float) * 2);
+	x[0] = 800;
+	x[1] = 387;
+	y[0] = 100;
+	y[1] = 100;
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 1000, 1000, "fdf");
+	ft_connect(x, y, mlx, win);
+	mlx_key_hook(win, ft_key_esc, 0);
+	mlx_loop(mlx);
 }
