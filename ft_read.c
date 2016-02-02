@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:52:38 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/01 13:37:14 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/02 15:14:46 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_data	*ft_read(char *entry)
 		i++;
 	}
 	ptr->index++;
-	if (i > ptr->width)
-		ptr->width = i;
+	ptr->width = i;
 	return (ptr);
 }
