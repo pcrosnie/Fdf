@@ -5,115 +5,87 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 14:25:50 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/01/18 17:53:09 by pcrosnie         ###   ########.fr       */
+/*   Created: 2016/01/29 13:10:15 by pcrosnie          #+#    #+#             */
+/*   Updated: 2016/02/04 13:16:08 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void    ft_fill_tab(char *buf, t_line *ptr)
+static void			ft_restline(char **reste, char *buf)
 {
-	int i;
-	int j;
-	int k;
-	int a;
+	char	*tmp;
 
-	i = ptr->lasti;
-	j = ptr->lastj;
-	k = 0;
-	a = 0;
-	while (buf[k] && k < BUFF_SIZE + 1)
+	tmp = NULL;
+	if (*reste)
 	{
-		if (buf[k] == '\n')
-		{
-			k++;
-			i++;
-			j = 0;
-			ptr->read[i] = (char *)malloc(sizeof(char) * 1000000);
-		}
-		if (buf[k] && k < BUFF_SIZE + 1)
-			ptr->read[i][j++] = buf[k++];
+		tmp = ft_strjoin(*reste, buf);
+		ft_memdel((void **)reste);
+		*reste = ft_strdup(tmp);
+		ft_memdel((void **)&tmp);
 	}
-	ptr->lasti = i;
-	ptr->lastj = j;
+	else
+		*reste = ft_strdup(buf);
 }
 
-t_line  *ft_create_elem(int fd, char *buf)
+static int			ft_strsearch(char **reste, int len, char **line)
 {
-	t_line *ptr;
+	char			*tmp;
+	int				i;
 
-	ptr = (t_line *)malloc(sizeof(t_line));
-	ptr->read = (char **)malloc(sizeof(char *) * 1000000);
-	ptr->read[0] = (char *)malloc(sizeof(char) * 1000000);
-	ptr->fd = fd;
-	ptr->next = NULL;
-	ptr->line = 0;
-	ptr->lasti = 0;
-	ptr->lastj = 0;
-	ft_fill_tab(buf, ptr);
-	return (ptr);
-}
-
-t_line	*ft_fill_fd(int fd, char *buf, t_line **begin)
-{
-	t_line *ptr;
-
-	ptr = *begin;
-	while (ptr != NULL)
+	i = 0;
+	while (i < len)
 	{
-		if (ptr->fd == fd)
+		if ((*reste)[i] == '\n')
 		{
-			ft_fill_tab(buf, ptr);
-			return (ptr);
+			*line = ft_strsub(*reste, 0, i);
+			tmp = ft_strsub(*reste, i + 1, ft_strlen(*reste) - i);
+			ft_memdel((void **)reste);
+			*reste = ft_strdup(tmp);
+			ft_memdel((void **)&tmp);
+			return (1);
 		}
-		else if (fd != ptr->fd && ptr->next == NULL)
-		{
-			ptr->next = ft_create_elem(fd, buf);
-			return (ptr->next);
-		}
-		ptr = ptr->next;
+		i++;
 	}
-	return (ptr);
+	return (0);
 }
 
-int		get_next_line(int const fd, char **line)
+static int			ft_getline(char **reste, char **line, int ret)
 {
-	char *buf;;
-	static t_line *begin;
-	t_line *ptr;
-	int ret;
+	size_t			i;
+	size_t			len;
+	char			*tmp;
 
-	buf = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1));
-	while ((ret = read(fd, buf, BUFF_SIZE + 1)) && ft_strchr(buf, '\n') == NULL)
+	tmp = NULL;
+	len = ft_strlen(*reste);
+	i = 0;
+	if (ft_strsearch(reste, len, line))
+		return (1);
+	if (ret == 0)
+	{
+		*line = *reste;
+		*reste = NULL;
+	}
+	return (0);
+}
+
+int					get_next_line(int const fd, char **line)
+{
+	char			buf[BUFF_SIZE + 1];
+	int				ret;
+	static char		*reste = NULL;
+
+	if (!line)
+		return (-1);
+	while ((ret = read(fd, buf, BUFF_SIZE)) || reste)
 	{
 		if (ret == -1)
 			return (-1);
-		if (!begin)
-		{
-			begin = ft_create_elem(fd, buf);
-			ptr = begin;
-		}
-		else
-		{
-			ptr = ft_fill_fd(fd, buf, &begin);
-		}
-		buf = ft_memset(buf, '\0', BUFF_SIZE + 1);
+		buf[ret] = '\0';
+		if (ret > 0)
+			ft_restline(&reste, buf);
+		if (ft_getline(&reste, line, ret))
+			return (1);
 	}
-	if (!begin)
-	{
-		begin = ft_create_elem(fd, buf);
-		ptr = begin;
-	}
-	else
-	{
-		ptr = ft_fill_fd(fd, buf, &begin);
-	}
-	*line = ptr->read[ptr->line];
-	ptr->line++;
-	if (ret == -1)
-		return (-1);
-	if (ret == 0 && ptr->read[ptr->line] == NULL)
-		return(0);
-	return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:52:38 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/02 15:19:18 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/04 15:35:38 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_data	*ft_read(char *entry)
 	{
 		ptr = (t_data *)malloc(sizeof(t_data));
 		ptr->entry = (int **)malloc(sizeof(int *) * 100000);
+		ptr->index = 0;
+		ptr->width = 0;
 	}
 	if (!(ptr->entry[ptr->index]))
 		ptr->entry[ptr->index] = (int *)malloc(sizeof(int) * 100000);
