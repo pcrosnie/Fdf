@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:44:54 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/04 13:55:50 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/05 14:24:57 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_draw(t_data *ptr, void *mlx, void *win, float *angles)
 		{
 			x[0] = 500 + 3 * ((cos(angles[0]) * i * 10) + (sin(angles[1]) * j * 10));
 			x[1] = 500 + 3 * ((cos(angles[0]) * i * 10) + (sin(angles[1]) * (j + 1) * 10));
-			y[0] = 500 + 3 * ((sin(angles[1]) * ((sin(angles[0]) * i * 10)) + ((cos(angles[0]) * j * 10)) - (cos(angles[1]) * ptr->entry[i][j])));
-			y[1] = 500 + 3 * ((sin(angles[1]) * ((sin(angles[0]) * i * 10)) + ((cos(angles[0]) * (j + 1) * 10)) - (cos(angles[1]) * ptr->entry[i][j + 1])));
+			y[0] = 500 + 3 * ((sin(angles[1]) * ((sin(angles[0]) * i * 10)) + ((cos(angles[0]) * j * 10)) + (cos(angles[1]) * ptr->entry[i][j])));
+			y[1] = 500 + 3 * ((sin(angles[1]) * ((sin(angles[0]) * i * 10)) + ((cos(angles[0]) * (j + 1) * 10)) + (cos(angles[1]) * ptr->entry[i][j + 1])));
 			ft_connect(x, y, mlx, win);
 			j++;
 		}
@@ -54,9 +54,9 @@ void    ft_draw_vert(t_data *ptr, void *mlx, void *win, float *angles)
 		while (j < ptr->width)
 		{
 			x[0] = 500 + 3 * (cos(angles[0]) * i * 10 + (sin(angles[1]) * j * 10));
-			x[1] = 500 + 3 * (cos(angles[0]) * (i + 1) * 10 + (sin(angles[1]) * j * 10));
-			y[0] = 500 + 3 * (sin(angles[1]) * ((sin(angles[0]) * i * 10) + (cos(angles[0]) * j * 10)) - (cos(angles[1]) * ptr->entry[i][j]));
-			y[1] = 500 + 3 * (sin(angles[1]) * ((sin(angles[0]) * (i + 1) * 10) + (cos(angles[0]) * j * 10)) - (cos(angles[1]) * ptr->entry[i + 1][j]));
+			x[1] = 500 + 3 * ((cos(angles[0]) * (i + 1) * 10) + (sin(angles[1]) * j * 10));
+			y[0] = 500 + 3 * (sin(angles[1]) * ((sin(angles[0]) * i * 10) + (cos(angles[0]) * j * 10)) + (cos(angles[1]) * ptr->entry[i][j]));
+			y[1] = 500 + 3 * (sin(angles[1]) * ((sin(angles[0]) * (i + 1) * 10) + (cos(angles[0]) * j * 10)) + (cos(angles[1]) * ptr->entry[i + 1][j]));
 			ft_connect(x, y, mlx, win);
 			j++;
 		}

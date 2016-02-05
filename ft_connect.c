@@ -10,7 +10,7 @@ void	ft_draw_line3(float *x, float *y, void *mlx, void *win)
 	coeff_dir = (x[1] - x[0]) / (y[1] - y[0]);
 	j = - 1;
 	i = 1;
-	while (x[0] + j >= x[1] || y[0] + i <= y[1])
+	while (x[0] + j > x[1] || y[0] + i < y[1])
 	{
 		tmp = j / i;
 		if (tmp >= coeff_dir)
@@ -30,7 +30,7 @@ void	ft_draw_line2(float *x, float *y, void *mlx, void *win)
 	j = -1;
 	i = 1;
 	coeff_dir = (x[1] - x[0]) / (y[1] - y[0]);
-	while (x[1] + j >= x[0] || y[1] + i <= y[0])
+	while (x[1] + j > x[0] || y[1] + i < y[0])
 	{
 		tmp = j / i;
 		if (tmp >= coeff_dir)
@@ -50,7 +50,7 @@ void	ft_draw_line1(float *x, float *y, void *mlx, void *win)
 	i = 1;
 	j = 1;
 	coeff_dir = (x[1] - x[0]) / (y[1] - y[0]);
-	while (x[0] + j <= x[1] || y[0] + i <= y[1])
+	while (x[0] + j < x[1] || y[0] + i < y[1])
 	{
 		tmp = j / i;
 		if (tmp >= coeff_dir)
@@ -70,7 +70,7 @@ void    ft_draw_line4(float *x, float *y, void *mlx, void *win)
 	i = 1;
 	j = 1;
 	coeff_dir = (x[1] - x[0]) / (y[1] - y[0]);
-	while (x[1] + j <= x[0] || y[1] + i <= y[0])
+	while (x[1] + j < x[0] || y[1] + i < y[0])
 	{
 		tmp = j / i;
 		if (tmp >= coeff_dir)
@@ -94,7 +94,7 @@ void	ft_connect(float *x, float *y, void	*mlx, void *win)
 	else if (coeff_dir == 0 && x[1] < x[0])
 		while (i < x[0] - x[1])
 			mlx_pixel_put(mlx, win, x[1] + i++, y[1], 0xFFFFFF);
-	if (coeff_dir < 0)
+	else if (coeff_dir < 0)
 	{
 		if (x[1] - x[0] < 0)
 			ft_draw_line3(x, y, mlx, win);

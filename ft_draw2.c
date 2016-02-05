@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:44:54 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/04 16:11:03 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/05 10:44:32 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,4 @@ void    ft_draw_vert(t_data *ptr, void *mlx, void *win)
 		ptr->tmpX += 20;
 		j++;
 	}
-//	ft_draw(ptr, mlx, win);
 }
