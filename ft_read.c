@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:52:38 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/04 15:35:38 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:24:52 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_data	*ft_read(char *entry)
 	tmp = ft_strsplit(entry, ' ');
 	while (tmp[i])
 	{
+		ft_putnbr(i);
 		ptr->entry[ptr->index][i] = ft_atoi(tmp[i]);
 		i++;
 	}

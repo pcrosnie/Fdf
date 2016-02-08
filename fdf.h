@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:50:19 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/05 11:15:55 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:29:49 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 
 typedef struct	s_data
 {
-//	float tmpX;
-//	float tmpY;i
+	int tmp_color;
+	int color;
+	int	scale;
 	float *angles;
 	void *mlx;
 	void *win;
@@ -30,9 +31,9 @@ typedef struct	s_data
 	int **entry;
 }				t_data;
 
-void	ft_draw(t_data *ptr, void *mlx, void *win, float *angles);
-void	ft_draw_vert(t_data *ptr, void *mlx, void *win, float *angles);
-void	ft_connect(float *x, float *y, void *mlx, void *win);
+void	ft_draw(t_data *ptr);
+void	ft_draw_vert(t_data *ptr);
+void	ft_connect(float *x, float *y, t_data *ptr);
 void	ft_loop(t_data *ptr);
 t_data	*ft_read(char *entry);
 

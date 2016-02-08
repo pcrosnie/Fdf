@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:20:13 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/05 10:35:27 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:20:03 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		main(int argc, char **argv)
 	{
 		ptr = ft_read(str);
 	}
-//	ft_print_tab(ptr->entry);
+	ft_print_tab(ptr->entry);
 	ft_putchar('\0');
 	ft_loop(ptr);
 	return (0);
