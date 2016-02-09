@@ -6,12 +6,11 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:38:11 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/09 14:43:26 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 15:01:48 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int		ft_key_esc(int keycode, t_data *ptr)
 {
@@ -35,7 +34,7 @@ void	ft_loop(t_data *ptr)
 	ptr->scale = 100 / ((ptr->width + ptr->index) / 5);
 	ptr->angles[0] = 3.14;
 	ptr->angles[1] = M_PI_2;
-	ptr->tmp_color = 2000000000;
+	ptr->tmp_color = 2147483647;
 	ptr->mlx = mlx_init();
 	ptr->win = mlx_new_window(ptr->mlx, 1000, 1000, "fdf");
 	ft_draw_vert(ptr);

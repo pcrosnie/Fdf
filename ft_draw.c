@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:44:54 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/09 14:48:47 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:54:16 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_draw(t_data *ptr)
 		while (j + 1 < ptr->width)
 		{
 			ptr->color = ptr->tmp_color
-			- (ptr->entry[i][j] + ptr->entry[i][j + 1] * 10000);
+			- ((ptr->entry[i][j] + ptr->entry[i][j + 1]) * 10000);
 			x[0] = ft_set_x_coord(ptr, i, j);
 			x[1] = ft_set_x_coord(ptr, i, j + 1);
 			y[0] = ft_set_y_coord(ptr, i, j);
@@ -76,7 +76,7 @@ void	ft_draw_vert(t_data *ptr)
 		while (j < ptr->width)
 		{
 			ptr->color = ptr->tmp_color
-				- (ptr->entry[i][j] + ptr->entry[i + 1][j] * 10000);
+				- ((ptr->entry[i][j] + ptr->entry[i + 1][j]) * 10000);
 			x[0] = ft_set_x_coord(ptr, i, j);
 			x[1] = ft_set_x_coord(ptr, i + 1, j);
 			y[0] = ft_set_y_coord(ptr, i, j);
