@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:44:54 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/08 16:29:47 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 09:41:22 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_draw(t_data *ptr)
 		j = 0;
 		while (j + 1 < ptr->width)
 		{
-			ptr->color = ptr->tmp_color - (ptr->entry[i][j] + ptr->entry[i][j + 1] * 500);
+			ptr->color = ptr->tmp_color - (ptr->entry[i][j] + ptr->entry[i][j + 1] * 10000);
 			x[0] = 500 + (ptr->scale * ((cos(ptr->angles[0]) * i) + (sin(ptr->angles[0]) * j)));
 			x[1] = 500 + (ptr->scale * ((cos(ptr->angles[0]) * i) + (sin(ptr->angles[0]) * (j + 1))));
 			y[0] = 500 + (ptr->scale * (sin(ptr->angles[1]) * ((sin(ptr->angles[0]) * i) + (cos(ptr->angles[0]) * j))) + (cos(ptr->angles[1]) * ptr->entry[i][j]));
@@ -55,7 +55,7 @@ void    ft_draw_vert(t_data *ptr)
 		j = 0;
 		while (j < ptr->width)
 		{
-			ptr->color = ptr->tmp_color - (ptr->entry[i][j] + ptr->entry[i + 1][j] * 500);
+			ptr->color = ptr->tmp_color - (ptr->entry[i][j] + ptr->entry[i + 1][j] * 10000);
 			x[0] = 500 + (ptr->scale * (cos(ptr->angles[0]) * i + (sin(ptr->angles[0]) * j)));
 			x[1] = 500 + (ptr->scale * ((cos(ptr->angles[0]) * (i + 1)) + (sin(ptr->angles[0]) * j)));
 			y[0] = 500 + (ptr->scale * (sin(ptr->angles[1]) * ((sin(ptr->angles[0]) * i) + (cos(ptr->angles[0]) * j))) + (cos(ptr->angles[1]) * ptr->entry[i][j]));

@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:20:13 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/08 16:20:03 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 12:12:44 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@ int		main(int argc, char **argv)
 	char	*str;
 	t_data	*ptr;
 	int		fd;
-	int a;
+	int		ret;
 
-	a = 0;
 	fd = open(argv[1], O_RDONLY);
-	while (get_next_line(fd, &str))
+	while ((ret = get_next_line(fd, &str)))
 	{
+		if (ret == -1)
+			return (0);
 		ptr = ft_read(str);
+		if (ptr == NULL)
+			return (0);
 	}
 	ft_print_tab(ptr->entry);
 	ft_putchar('\0');

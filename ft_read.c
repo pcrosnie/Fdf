@@ -6,11 +6,28 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:52:38 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/08 16:24:52 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 12:16:48 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int		ft_check(char *str)
+{
+	int i;
+
+	i = 0;
+	if (!str)
+		return (1);
+	while (str[i])
+	{
+		if ((str[i] > 57 || str[i] < 48) && str[i] != '\t' && str[i] != ' ' 
+				&& str[i] != '\n' && str[i] != '-')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 t_data	*ft_read(char *entry)
 {
@@ -19,6 +36,9 @@ t_data	*ft_read(char *entry)
 	static t_data *ptr;
 
 	i = 0;
+	ft_putstr(entry);
+	if (ft_check(entry) == 0)
+		return (NULL);
 	if (!ptr)
 	{
 		ptr = (t_data *)malloc(sizeof(t_data));
@@ -31,10 +51,11 @@ t_data	*ft_read(char *entry)
 	tmp = ft_strsplit(entry, ' ');
 	while (tmp[i])
 	{
-		ft_putnbr(i);
 		ptr->entry[ptr->index][i] = ft_atoi(tmp[i]);
 		i++;
 	}
+	if (ptr->index != 0 && i > ptr->width)
+		return (NULL);
 	ptr->index++;
 	ptr->width = i;
 	return (ptr);

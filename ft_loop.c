@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:38:11 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/08 16:14:44 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 12:20:02 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int     ft_key_esc(int keycode, t_data *ptr)
 		exit(0);
 	(keycode == 123) ? ptr->angles[0] += 0.1 : 0;
 	(keycode == 124) ? ptr->angles[0] -= 0.1 : 0;
-	(keycode == 125) ? ptr->angles[1] += 0.1 : 0;
-	(keycode == 126) ? ptr->angles[1] -= 0.1 : 0;
+	(keycode == 126) ? ptr->angles[1] += 0.1 : 0;
+	(keycode == 125) ? ptr->angles[1] -= 0.1 : 0;
 	(keycode == 34) ? ptr->scale += 1 : 0;
 	(keycode == 31) ? ptr->scale -= 1 : 0;
 //	if (ptr->angles[0] < 0.1)
