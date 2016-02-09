@@ -6,31 +6,11 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:20:13 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/09 12:12:44 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:11:20 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void    ft_print_tab(int **tab)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (i < 11)
-	{
-		j = 0;
-		while (j < 18)
-		{
-			ft_putnbr(tab[i][j++]);
-			ft_putchar(' ');
-		}
-		i++;
-		ft_putchar('\n');
-	}
-}
 
 int		main(int argc, char **argv)
 {
@@ -48,8 +28,6 @@ int		main(int argc, char **argv)
 		if (ptr == NULL)
 			return (0);
 	}
-	ft_print_tab(ptr->entry);
-	ft_putchar('\0');
 	ft_loop(ptr);
 	return (0);
 }

@@ -6,14 +6,14 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:38:11 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/09 12:20:02 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:43:26 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-int     ft_key_esc(int keycode, t_data *ptr)
+int		ft_key_esc(int keycode, t_data *ptr)
 {
 	if (keycode == 53)
 		exit(0);
@@ -23,11 +23,6 @@ int     ft_key_esc(int keycode, t_data *ptr)
 	(keycode == 125) ? ptr->angles[1] -= 0.1 : 0;
 	(keycode == 34) ? ptr->scale += 1 : 0;
 	(keycode == 31) ? ptr->scale -= 1 : 0;
-//	if (ptr->angles[0] < 0.1)
-//		ptr->angles[0] = 2 * M_PI;
-//	if (ptr->angles[1] < 0.1)
-//		ptr->angles[1] = 2 * M_PI;
-	printf("%f !! %f\n", ptr->angles[0], ptr->angles[1]);
 	mlx_clear_window(ptr->mlx, ptr->win);
 	ft_draw_vert(ptr);
 	ft_draw(ptr);

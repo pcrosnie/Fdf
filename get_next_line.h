@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 12:03:15 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/01/20 10:56:43 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:43:17 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # include <fcntl.h>
 # include "libft.h"
 
-int		get_next_line(int const fd, char **line);
+int					get_next_line(int const fd, char **line);
 
 typedef struct		s_line
 {
 	int				lasti;
 	int				lastj;
 	int				line;
-	int 			fd;
+	int				fd;
 	char			**read;
 	struct s_line	*next;
 }					t_line;

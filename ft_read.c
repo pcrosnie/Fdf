@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:52:38 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/09 12:16:48 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:11:57 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_check(char *str)
 		return (1);
 	while (str[i])
 	{
-		if ((str[i] > 57 || str[i] < 48) && str[i] != '\t' && str[i] != ' ' 
+		if ((str[i] > 57 || str[i] < 48) && str[i] != '\t' && str[i] != ' '
 				&& str[i] != '\n' && str[i] != '-')
 			return (0);
 		i++;
@@ -31,12 +31,11 @@ int		ft_check(char *str)
 
 t_data	*ft_read(char *entry)
 {
-	int i;
-	char **tmp;
-	static t_data *ptr;
+	int				i;
+	char			**tmp;
+	static t_data	*ptr;
 
-	i = 0;
-	ft_putstr(entry);
+	i = -1;
 	if (ft_check(entry) == 0)
 		return (NULL);
 	if (!ptr)
@@ -49,12 +48,9 @@ t_data	*ft_read(char *entry)
 	if (!(ptr->entry[ptr->index]))
 		ptr->entry[ptr->index] = (int *)malloc(sizeof(int) * 100000);
 	tmp = ft_strsplit(entry, ' ');
-	while (tmp[i])
-	{
+	while (tmp[++i])
 		ptr->entry[ptr->index][i] = ft_atoi(tmp[i]);
-		i++;
-	}
-	if (ptr->index != 0 && i > ptr->width)
+	if (ptr->index != 0 && i != ptr->width)
 		return (NULL);
 	ptr->index++;
 	ptr->width = i;

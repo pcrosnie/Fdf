@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_connect.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/02/09 14:12:36 by pcrosnie          #+#    #+#             */
+/*   Updated: 2016/02/09 14:17:42 by pcrosnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	ft_draw_line3(float *x, float *y, t_data *ptr)
@@ -8,7 +20,7 @@ void	ft_draw_line3(float *x, float *y, t_data *ptr)
 	float tmp;
 
 	coeff_dir = (x[1] - x[0]) / (y[1] - y[0]);
-	j = - 1;
+	j = -1;
 	i = 1;
 	while (x[0] + j > x[1] || y[0] + i < y[1])
 	{
@@ -60,7 +72,7 @@ void	ft_draw_line1(float *x, float *y, t_data *ptr)
 	}
 }
 
-void    ft_draw_line4(float *x, float *y, t_data *ptr)
+void	ft_draw_line4(float *x, float *y, t_data *ptr)
 {
 	float i;
 	float j;
@@ -82,19 +94,18 @@ void    ft_draw_line4(float *x, float *y, t_data *ptr)
 
 void	ft_connect(float *x, float *y, t_data *ptr)
 {
-	float coeff_dir;
 	int i;
 
 	i = 0;
 	if (y[1] - y[0] != 0)
-		coeff_dir = (x[1] - x[0]) / (y[1] - y[0]);
-	if (coeff_dir == 0 && x[1] > x[0])
+		ptr->coeff_dir = (x[1] - x[0]) / (y[1] - y[0]);
+	if (ptr->coeff_dir == 0 && x[1] > x[0])
 		while (i < x[1] - x[0])
 			mlx_pixel_put(ptr->mlx, ptr->win, x[0] + i++, y[0], ptr->color);
-	else if (coeff_dir == 0 && x[1] < x[0])
+	else if (ptr->coeff_dir == 0 && x[1] < x[0])
 		while (i < x[0] - x[1])
 			mlx_pixel_put(ptr->mlx, ptr->win, x[1] + i++, y[1], ptr->color);
-	else if (coeff_dir < 0)
+	else if (ptr->coeff_dir < 0)
 	{
 		if (x[1] - x[0] < 0)
 			ft_draw_line3(x, y, ptr);

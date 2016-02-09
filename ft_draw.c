@@ -6,19 +6,37 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:44:54 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/09 09:41:22 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:48:47 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
+
+float	ft_set_x_coord(t_data *ptr, int i, int j)
+{
+	float nb;
+
+	nb = 500 + (ptr->scale * ((cos(ptr->angles[0]) * i)
+				+ (sin(ptr->angles[0]) * j)));
+	return (nb);
+}
+
+float	ft_set_y_coord(t_data *ptr, int i, int j)
+{
+	float nb;
+
+	nb = 500 + (ptr->scale * (sin(ptr->angles[1])
+				* ((sin(ptr->angles[0]) * i) + (cos(ptr->angles[0]) * (j))))
+			+ (cos(ptr->angles[1]) * ptr->entry[i][j]));
+	return (nb);
+}
 
 void	ft_draw(t_data *ptr)
 {
-	float *x;
-	float *y;
-	int i;
-	int j;
+	float	*x;
+	float	*y;
+	int		i;
+	int		j;
 
 	i = 0;
 	x = (float *)malloc(sizeof(float) * 2);
@@ -28,24 +46,26 @@ void	ft_draw(t_data *ptr)
 		j = 0;
 		while (j + 1 < ptr->width)
 		{
-			ptr->color = ptr->tmp_color - (ptr->entry[i][j] + ptr->entry[i][j + 1] * 10000);
-			x[0] = 500 + (ptr->scale * ((cos(ptr->angles[0]) * i) + (sin(ptr->angles[0]) * j)));
-			x[1] = 500 + (ptr->scale * ((cos(ptr->angles[0]) * i) + (sin(ptr->angles[0]) * (j + 1))));
-			y[0] = 500 + (ptr->scale * (sin(ptr->angles[1]) * ((sin(ptr->angles[0]) * i) + (cos(ptr->angles[0]) * j))) + (cos(ptr->angles[1]) * ptr->entry[i][j]));
-			y[1] = 500 + (ptr->scale * (sin(ptr->angles[1]) * ((sin(ptr->angles[0]) * i) + (cos(ptr->angles[0]) * (j + 1)))) + (cos(ptr->angles[1]) * ptr->entry[i][j + 1]));
+			ptr->color = ptr->tmp_color
+			- (ptr->entry[i][j] + ptr->entry[i][j + 1] * 10000);
+			x[0] = ft_set_x_coord(ptr, i, j);
+			x[1] = ft_set_x_coord(ptr, i, j + 1);
+			y[0] = ft_set_y_coord(ptr, i, j);
+			y[1] = ft_set_y_coord(ptr, i, j++ + 1);
 			ft_connect(x, y, ptr);
-			j++;
 		}
 		i++;
 	}
+	free(x);
+	free(y);
 }
 
-void    ft_draw_vert(t_data *ptr)
+void	ft_draw_vert(t_data *ptr)
 {
-	float *x;
-	float *y;
-	int i;
-	int j;
+	float	*x;
+	float	*y;
+	int		i;
+	int		j;
 
 	i = 0;
 	x = (float *)malloc(sizeof(float) * 2);
@@ -55,16 +75,16 @@ void    ft_draw_vert(t_data *ptr)
 		j = 0;
 		while (j < ptr->width)
 		{
-			ptr->color = ptr->tmp_color - (ptr->entry[i][j] + ptr->entry[i + 1][j] * 10000);
-			x[0] = 500 + (ptr->scale * (cos(ptr->angles[0]) * i + (sin(ptr->angles[0]) * j)));
-			x[1] = 500 + (ptr->scale * ((cos(ptr->angles[0]) * (i + 1)) + (sin(ptr->angles[0]) * j)));
-			y[0] = 500 + (ptr->scale * (sin(ptr->angles[1]) * ((sin(ptr->angles[0]) * i) + (cos(ptr->angles[0]) * j))) + (cos(ptr->angles[1]) * ptr->entry[i][j]));
-			y[1] = 500 + (ptr->scale * (sin(ptr->angles[1]) * ((sin(ptr->angles[0]) * (i + 1)) + (cos(ptr->angles[0]) * j))) + (cos(ptr->angles[1]) * ptr->entry[i + 1][j]));
+			ptr->color = ptr->tmp_color
+				- (ptr->entry[i][j] + ptr->entry[i + 1][j] * 10000);
+			x[0] = ft_set_x_coord(ptr, i, j);
+			x[1] = ft_set_x_coord(ptr, i + 1, j);
+			y[0] = ft_set_y_coord(ptr, i, j);
+			y[1] = ft_set_y_coord(ptr, i + 1, j++);
 			ft_connect(x, y, ptr);
-			j++;
 		}
 		i++;
-		ft_putnbr(ptr->entry[1][18]);
 	}
+	free(x);
+	free(y);
 }
-
