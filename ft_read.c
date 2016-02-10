@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 10:52:38 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/09 14:11:57 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/10 11:50:30 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_check(char *str)
 
 	i = 0;
 	if (!str)
-		return (1);
+		return (0);
 	while (str[i])
 	{
 		if ((str[i] > 57 || str[i] < 48) && str[i] != '\t' && str[i] != ' '

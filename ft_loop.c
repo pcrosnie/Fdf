@@ -6,7 +6,7 @@
 /*   By: pcrosnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:38:11 by pcrosnie          #+#    #+#             */
-/*   Updated: 2016/02/09 15:01:48 by pcrosnie         ###   ########.fr       */
+/*   Updated: 2016/02/10 11:46:13 by pcrosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int		ft_key_esc(int keycode, t_data *ptr)
 void	ft_loop(t_data *ptr)
 {
 	ptr->angles = (float *)malloc(sizeof(float) * 2);
-	ptr->scale = 100 / ((ptr->width + ptr->index) / 5);
+	if ((ptr->width + ptr->index) >= 5)
+		ptr->scale = 100 / ((ptr->width + ptr->index) / 5);
+	else
+		ptr->scale = 100;
 	ptr->angles[0] = 3.14;
 	ptr->angles[1] = M_PI_2;
 	ptr->tmp_color = 2147483647;
